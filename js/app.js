@@ -959,7 +959,7 @@ async function showDetails(id, vod_name, sourceCode) {
             // 保存当前视频的所有集数
             currentEpisodes = safeEpisodes;
             episodesReversed = false; // 默认正序
-            /*modalContent.innerHTML = `
+            modalContent.innerHTML = `
                 <div class="flex justify-end mb-2">
                     <button onclick="toggleEpisodeOrder('${sourceCode}')" class="px-4 py-1 bg-[#222] hover:bg-[#333] border border-[#333] rounded-lg transition-colors flex items-center space-x-1">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
@@ -976,7 +976,7 @@ async function showDetails(id, vod_name, sourceCode) {
                 <div id="episodesGrid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2">
                     ${renderEpisodes(vod_name, sourceCode)}
                 </div>
-            `; */
+            `;
         } else {
             modalContent.innerHTML = '<p class="text-center text-gray-400 py-8">没有找到可播放的视频</p>';
         }
