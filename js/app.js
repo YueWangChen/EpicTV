@@ -930,8 +930,22 @@ async function showDetails(id, vod_name, sourceCode) {
         const response = await fetch('/api/detail?id=' + encodeURIComponent(id) + apiParams);
         
         const data = await response.json();
-        
-        const modal = document.getElementById('modal');
+        if (data.episodes && data.episodes.length > 0) {
+            // 安全处理集数URL
+            const safeEpisodes = data.episodes.map(url => {
+                try {
+                    // 确保URL是有效的并且是http或https开头
+                    return url && (url.startsWith('http://') || url.startsWith('https://'))
+                        ? url.replace(/"/g, '&quot;')
+                        : '';
+                } catch (e) {
+                    return '';
+                }
+            }).filter(url => url); // 过滤掉空URL
+            currentEpisodes = safeEpisodes;
+            renderEpisodes(vod_name, sourceCode);
+        }
+        /*const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modalTitle');
         const modalContent = document.getElementById('modalContent');
         
@@ -981,7 +995,7 @@ async function showDetails(id, vod_name, sourceCode) {
             modalContent.innerHTML = '<p class="text-center text-gray-400 py-8">没有找到可播放的视频</p>';
         }
         
-        modal.classList.remove('hidden');
+        modal.classList.remove('hidden');*/
     } catch (error) {
         console.error('获取详情错误:', error);
         showToast('获取详情失败，请稍后重试', 'error');
@@ -1093,7 +1107,8 @@ function handlePlayerError() {
 
 // 辅助函数用于渲染剧集按钮（使用当前的排序状态）
 function renderEpisodes(vodName, sourceCode) {
-    const episodes = episodesReversed ? [...currentEpisodes].reverse() : currentEpisodes;
+    playVideo(episode, vodName.replace(/"/g, '&quot;'), sourceCode);
+    /*const episodes = episodesReversed ? [...currentEpisodes].reverse() : currentEpisodes;
     return episodes.map((episode, index) => {
         // 根据倒序状态计算真实的剧集索引
         const realIndex = episodesReversed ? currentEpisodes.length - 1 - index : index;
@@ -1103,7 +1118,7 @@ function renderEpisodes(vodName, sourceCode) {
                 第${realIndex + 1}集
             </button>
         `;
-    }).join('');
+    }).join('');*/
 }
 
 // 复制视频链接到剪贴板
