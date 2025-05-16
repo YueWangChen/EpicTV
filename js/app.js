@@ -946,8 +946,6 @@ async function showDetails(id, vod_name, sourceCode) {
             }).filter(url => url); // 过滤掉空URL
 
             currentEpisodes = safeEpisodes;
-            episodesReversed = false; // 默认正序
-
             renderEpisodes(vod_name, sourceCode);
         }
         /*const modal = document.getElementById('modal');

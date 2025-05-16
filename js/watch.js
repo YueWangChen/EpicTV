@@ -57,5 +57,5 @@ window.onload = function() {
     // 重定向到播放器页面
     setTimeout(() => {
         window.location.href = playerUrl;
-    }, 100); // 稍微早于meta refresh的时间，确保我们的JS控制重定向
+    }, 1000); // 稍微早于meta refresh的时间，确保我们的JS控制重定向
 };
