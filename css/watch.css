@@ -68,13 +68,6 @@ body {
     font-weight: 500;
 }
 
-#redirect-status {
-    font-size: 0.9rem;
-    color: #8599b2;
-    margin-bottom: 1.5rem;
-    height: 20px;
-}
-
 .redirect-hint {
     font-size: 0.9rem;
     color: #8599b2;
@@ -120,9 +113,5 @@ body {
 
     .redirect-message {
         font-size: 1rem;
-    }
-
-    #redirect-status {
-        font-size: 0.8rem;
     }
 }

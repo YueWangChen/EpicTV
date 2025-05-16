@@ -7,29 +7,7 @@ window.onload = function() {
     let playerUrl = "player.html";
     
     // 更新状态文本
-    const statusElement = document.getElementById('redirect-status');
     const manualRedirect = document.getElementById('manual-redirect');
-    let statusMessages = [
-        "准备视频数据中...",
-        "正在加载视频信息...",
-        "即将开始播放...",
-    ];
-    let currentStatus = 0;
-    
-    // 状态文本动画
-    let statusInterval = setInterval(() => {
-        if (currentStatus >= statusMessages.length) {
-            currentStatus = 0;
-        }
-        if (statusElement) {
-            statusElement.textContent = statusMessages[currentStatus];
-            statusElement.style.opacity = 0.7;
-            setTimeout(() => {
-                if (statusElement) statusElement.style.opacity = 1;
-            }, 300);
-        }
-        currentStatus++;
-    }, 1000);
     
     // 如果有查询参数，添加到player.html的URL
     if (currentParams.toString()) {
@@ -78,7 +56,6 @@ window.onload = function() {
     
     // 重定向到播放器页面
     setTimeout(() => {
-        clearInterval(statusInterval);
         window.location.href = playerUrl;
-    }, 2800); // 稍微早于meta refresh的时间，确保我们的JS控制重定向
+    }, 100); // 稍微早于meta refresh的时间，确保我们的JS控制重定向
 };
