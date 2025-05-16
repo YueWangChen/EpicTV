@@ -902,7 +902,7 @@ async function showDetails(id, vod_name, sourceCode) {
         return;
     }
     
-    showLoading();
+    //showLoading();
     try {
         // 构建API参数
         let apiParams = '';
