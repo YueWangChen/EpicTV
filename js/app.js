@@ -930,6 +930,8 @@ async function showDetails(id, vod_name, sourceCode) {
         const response = await fetch('/api/detail?id=' + encodeURIComponent(id) + apiParams);
         
         const data = await response.json();
+        currentVideoTitle = vod_name || '未知视频';
+
         if (data.episodes && data.episodes.length > 0) {
             // 安全处理集数URL
             const safeEpisodes = data.episodes.map(url => {
@@ -942,7 +944,10 @@ async function showDetails(id, vod_name, sourceCode) {
                     return '';
                 }
             }).filter(url => url); // 过滤掉空URL
+
             currentEpisodes = safeEpisodes;
+            episodesReversed = false; // 默认正序
+
             renderEpisodes(vod_name, sourceCode);
         }
         /*const modal = document.getElementById('modal');
@@ -1107,7 +1112,12 @@ function handlePlayerError() {
 
 // 辅助函数用于渲染剧集按钮（使用当前的排序状态）
 function renderEpisodes(vodName, sourceCode) {
-    playVideo(episode, vodName.replace(/"/g, '&quot;'), sourceCode);
+    const episodes = episodesReversed ? [...currentEpisodes].reverse() : currentEpisodes;
+    return episodes.map((episode, index) => {
+        // 根据倒序状态计算真实的剧集索引
+        const realIndex = episodesReversed ? currentEpisodes.length - 1 - index : index;
+        return playVideo(episode, vodName.replace(/"/g, '&quot;'), sourceCode, realIndex);
+    }).join('');
     /*const episodes = episodesReversed ? [...currentEpisodes].reverse() : currentEpisodes;
     return episodes.map((episode, index) => {
         // 根据倒序状态计算真实的剧集索引
