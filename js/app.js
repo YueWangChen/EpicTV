@@ -568,11 +568,11 @@ function resetSearchArea() {
     try {
         window.history.pushState(
             {}, 
-            `TV - 免费在线视频搜索与观看平台`, 
+            `EpicTV - 免费在线视频搜索与观看平台`, 
             `/`
         );
         // 更新页面标题
-        document.title = `TV - 免费在线视频搜索与观看平台`;
+        document.title = `EpicTV - 免费在线视频搜索与观看平台`;
     } catch (e) {
         console.error('更新浏览器历史失败:', e);
     }
