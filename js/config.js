@@ -47,6 +47,10 @@ const API_SITES = {
         name: '非凡影视',
         detail: 'http://ffzy5.tv',
     },
+    feimao: {
+        api: 'https://肥猫.com',
+        name: '肥猫',
+    },
     heimuer: {
         api: 'https://json.heimuer.xyz',
         name: '黑木耳',
