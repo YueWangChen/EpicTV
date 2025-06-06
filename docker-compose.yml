@@ -1,8 +1,8 @@
 version: '3'
 services:
-  libretv:
-    image: bestzwei/libretv:latest
-    container_name: libretv
+  EpicTV:
+    image: bestzwei/EpicTV:latest
+    container_name: EpicTV
     ports:
       - "8899:80"
     environment:

@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (keyword) {
             // 设置搜索框的值
             document.getElementById('searchInput').value = keyword;
+            // 显示清空按钮
+            toggleClearButton();
             // 执行搜索
             setTimeout(() => {
                 // 使用setTimeout确保其他DOM加载和初始化完成
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     window.history.replaceState(
                         { search: keyword }, 
-                        `搜索: ${keyword}`, 
+                        `搜索: ${keyword} - EpicTV`, 
                         window.location.href
                     );
                 } catch (e) {
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             try {
                 window.history.replaceState(
                     { search: searchQuery }, 
-                    `搜索: ${searchQuery}`, 
+                    `搜索: ${searchQuery} - EpicTV`, 
                     `/s=${encodeURIComponent(searchQuery)}`
                 );
             } catch (e) {
